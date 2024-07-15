@@ -1,0 +1,83 @@
+Authentication can be done in 3 ways 
+    *COOKIES
+    *SESSIONS
+    *TOKEN 
+Authentication can also be done using third party libraries like
+   *passport
+   *OAuth
+
+* /THIS PROJECT WILL USE JWT i.e JSON WEB TOKEN AUTHENTICATION AND THIS
+* PROJECT PERFORMS AUTHENTICATION AND AUTHORISATION /
+
+1.create app.js and initialise the PROJECT
+2.install express,mongoose,jsonwebtoken and dotenv using npm
+3.install express-async-handler to handle any async errors
+4.write code in app.js to start server
+
+*<MONGODB> SETUP
+1.open mongodb atlas
+2.create new PROJECT
+3.create cluster
+4.now you will have username,password and connnection string
+    username:mohanasreeummidi
+    password:KLInxdbrxhDfMoDo
+    conn string:mongodb+srv://mohanasreeummidi:KLInxdbrxhDfMoDo@node-authentication-api.uv7wnet.mongodb.net/?retryWrites=true&w=majority&appName=NODE-AUTHENTICATION-API
+    go get conn string you have to click on choose conn method and then drivers 
+5.after this open vscode click on mongodb extension connect and paste this conn string
+6.set up was successful
+
+*ALL FOLDERS AND FILE CREATION 
+lets create <model>,<controller>,<routes> folders to implement MVC design
+1.create <user.js> file in model folder
+2.create <userCtrl.js> file in controller folder 
+    for this file open terminal and install bcryptjs
+    create userctrls object and export it 
+3.create <userRoute.js> file in routes folder
+4.now we are ready with MVC template
+
+*<POSTMAN> connnection
+1.create new workspace and name it
+2.create new collection named "USERS" and add new request POST method and use url of our app
+3. hit send you can see status code 200 
+
+**MIDDLEWARES
+1.middlewares are the functions in express that have acess to request object and then th response object
+2. user profile can be seen only after logging in i.e we have to use AUTHORISATION
+3.now to perform authirisarion we have to use middlewares
+4.crete middlewares folder
+5.create <isAuth.js> file in middlewares folder 
+6.import this <is.Auth.js> file in userRoute file 
+
+* lets explore profile route
+//?profile can be seen only after logging in so authentication is requires so we placed that middleware here
+router.get("/api/users/profile",isAuthenticated, userCtrls.profile);
+1.here user will go to url first and then it will go to next middleware "isAuthenticated" if it goes right then it will go to next middleware i.e it will open profile page
+2.this is how middleware flow happens
+3.so inorder to pass to next midlleware "next()" this must be included in current middleware
+
+*<isAuth.js> middleware logic
+1.this midlleware allows only logged in users to next middleware
+2.to check whther the user is logged in we can use TOKEN
+3.if a user has token i.e he is logged in user
+4.to get more clarity read fis=rst 3 lines in postman specification for authoristaion
+5.so we have token in headers ,we can acess it in our code using req.headers
+6.now we will have token in our code 
+7.we have to verify it whther it is valid or not using jsonwebtoken
+8.for that import jsonwebtoken in isAuth.js file
+9.if it is the correct token then save the id of that user into rew.user
+10.now you can send this id dynamically into the profile
+
+
+*POSTMAN SPECIFICATION FOR AUTHORISATION
+1.for routes which need authorisation we have to specify it in POSTMAN
+2.click headers and select authorisation in key and input token in value
+3.this means that if a user has valid token then he passes authorisation and can view sensitive information
+
+*lets create middlewares for error handling efficiently
+1.go to middlewares folder and create a file called <errHandler.js>
+2.write code into it 
+3.import this errorhandler middlware in app.js file
+
+**THIS PROJECT IS MAINLY ABOUT AUTHORISATION AND AUTHENTICATOON USING POSTMAN
+
+

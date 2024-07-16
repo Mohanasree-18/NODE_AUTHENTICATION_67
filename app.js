@@ -7,7 +7,7 @@ const errorHandler = require("./middlewares/errorHandler");
 //!CONNECTING TO MONGOOSE
 mongoose
   .connect(
-    "mongodb+srv://mohanasreeummidi:KLInxdbrxhDfMoDo@node-authentication-api.uv7wnet.mongodb.net/?retryWrites=true&w=majority&appName=NODE-AUTHENTICATION-API"
+    ""
   )
   .then(() => console.log("MONGODB connnected successfully"))
   .catch((e) => console.log(e));
